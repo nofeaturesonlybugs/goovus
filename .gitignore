@@ -1,6 +1,8 @@
 *.swp
 
 # Binaries for programs and plugins
+cmd
+goovus
 *.exe
 *.exe~
 *.dll
