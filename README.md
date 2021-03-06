@@ -63,7 +63,7 @@ Add domains used for vanity URLs to GOPRIVATE.
 
 Continuing with `libA` and `libB` you'd set `GOPRIVATE=go.company.corp` in your environment.  This stops `go get` or `go mod tidy` from searching the internet for any modules beginning with `go.company.corp`.
 
-`goovus` uses a main configuration file and then one additional configuration file for each vanity domain.
+`goovus` uses a main configuration file and then one additional configuration file per vanity domain.
 
 The default configuration file directory is `$EXEHOME/conf` but you can set it to any directory with the `-c` or `-conf` flags.
 
@@ -94,14 +94,14 @@ name = go.company.corp
 public = /ssl/certs/go.company.corp.pem
 private = /ssl/certs/go.company.corp.pem
 
-# Next we need a [repo] section for EACH go module we are serving vanity URLs for.
-# In our examples these are libA and libB.
+# Next we need a [repo] section for EACH go module we are serving vanity URLs.
+# In our example these are libA and libB.
 #
 # Note that the value for "name =" is prefixed to each repo.module and they are
 # separated with a slash.
 #
 # In other words "go.company.corp/" is prefixed to both "libA" and "libB" to create the
-# complete name the go tools are searching for.
+# complete name the go tools are searching.
 #
 
 [repo]
@@ -121,5 +121,9 @@ vcs = git
 
 Run `goovus` with:
 ```bash
-$ goovus -s|-serve
+$ goovus -s
+```
+or
+```bash
+$ goovus -serve
 ```
