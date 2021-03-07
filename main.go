@@ -93,6 +93,6 @@ func main() {
 	fmt.Println("Running.") //TODO log better
 	//
 	sigCh := make(chan os.Signal, 1)
-	signal.Notify(sigCh)
+	signal.Notify(sigCh, os.Kill)
 	<-sigCh
 }

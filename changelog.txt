@@ -1,5 +1,8 @@
 /dev
 
+    + Bug fix.  Restarts under systemd after serving each request due to
+        signal handling.
+
 0.1.0
 
     + Initial check in and working program.
