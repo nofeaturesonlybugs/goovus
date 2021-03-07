@@ -36,7 +36,7 @@ var Flags struct {
 // fatal tests if err is not nil and exits the app if it is.
 func fatal(err error) {
 	if err != nil {
-		fmt.Printf("fatal error: %v", err.Error())
+		fmt.Printf("fatal error: %v\n", err.Error())
 		os.Exit(0x01)
 	}
 }
@@ -79,12 +79,12 @@ func main() {
 	defer rtns.Stop()
 	//
 	if Flags.Serve {
-		var repoServer *VanityServer
+		var vanity *VanityServer
 		for _, server := range conf.Servers {
-			if repoServer, err = NewVanityServer(server); err != nil {
+			if vanity, err = NewVanityServer(server); err != nil {
 				fmt.Printf("creating vanity server: %v", err.Error()) // TODO log better
 				return
-			} else if err = repoServer.Start(rtns); err != nil {
+			} else if err = vanity.Start(rtns); err != nil {
 				fmt.Printf("starting vanity server: %v", err.Error()) // TODO log better
 				return
 			}
@@ -93,8 +93,6 @@ func main() {
 	fmt.Println("Running.") //TODO log better
 	//
 	sigCh := make(chan os.Signal, 1)
-	signal.Notify(sigCh)
-	select {
-	case <-sigCh:
-	}
+	signal.Notify(sigCh, os.Kill)
+	<-sigCh
 }

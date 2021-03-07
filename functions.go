@@ -15,13 +15,6 @@ import (
 // As a special case if no flags are provided a help message is printed and the
 // program exits.
 func LoadFlags() {
-	// usage := map[string]string{
-	// 	"conf":    "Set the configuration directory.",
-	// 	"help":    "Print help information.",
-	// 	"serve":   "Run the server to serve requests from Go tools.",
-	// 	"test":    "Test configuration.",
-	// 	"version": "Print version information.",
-	// }
 	usage := struct {
 		Conf    string
 		Help    string
